@@ -6,7 +6,7 @@ echo "== Inciando Orquestração de Preparação do Host Zabbix Proxy =="
 echo "==========================================================="
 
 # URL base para download dos scripts dos módulos
-GITHUB_URL_BASE="https://github.com/Josefellype/NewZabbixProxiesWithDocker/raw/refs/heads/main/"
+GITHUB_URL_BASE="https://github.com/Josefellype/NewProxiesZabbixOrangePi3B/raw/refs/heads/main/"
 
 # Diretório de trabalho temporário para os scripts
 # Isso mantém a execução limpa e isolada.

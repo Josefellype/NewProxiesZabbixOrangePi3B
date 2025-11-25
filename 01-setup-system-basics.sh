@@ -64,6 +64,22 @@ echo "[SYSTEM] Configurando timezone e NTP..."
 timedatectl set-timezone America/Sao_Paulo
 timedatectl set-ntp true
 
+# --- CORREÇÃO DE REPOSITÓRIOS (Orange Pi Fix) ---
+echo "[SYSTEM] Corrigindo mirrors do APT (Removendo Huawei Cloud)..."
+
+# 1. Remove listas de terceiros que vêm "quebradas" na imagem (especialmente docker da huawei)
+rm -f /etc/apt/sources.list.d/*
+
+# 2. Faz backup da lista original
+cp /etc/apt/sources.list /etc/apt/sources.list.bak
+
+# 3. Reescreve a sources.list usando os espelhos oficiais do Debian (CDN Global)
+cat <<EOF > /etc/apt/sources.list
+deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
+deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
+deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+EOF
+
 # --- Instalação de dependências essenciais ---
 echo "[SYSTEM] Instalando dependências..."
 apt-get update -y
